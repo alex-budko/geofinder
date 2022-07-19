@@ -8,6 +8,7 @@ import {
   Button,
   useColorModeValue,
 } from "@chakra-ui/react";
+import SecondaryOptions from "./SecondaryOptions";
 
 export default function Entrance({ setPassedParameters, setType }) {
 
@@ -53,14 +54,14 @@ export default function Entrance({ setPassedParameters, setType }) {
           <RadioGroup onChange={(e) => onChange(e)} defaultValue="1">
             <Center>
               <Stack mr='10' spacing="3">
+              <SecondaryOptions />
+              <Radio value="weatherAlerts">Weather Alert Zones (U.S.)</Radio>
                 <Radio value="wildfires">Wildfires</Radio>
-                <Radio value="severeStorms">Severe Storms</Radio>
-                <Radio value="volcanoes">Volcanoes</Radio>
               </Stack>
               <Stack spacing="3">
-                <Radio value="4">Unchecked</Radio>
-                <Radio value="5">Unchecked</Radio>
-                <Radio value="6">Unchecked</Radio>
+                <Radio value="earthquakes">Earthquakes</Radio>
+                <Radio value="severeStorms">Severe Storms</Radio>
+                <Radio value="volcanoes">Volcanoes</Radio>
               </Stack>
             </Center>
           </RadioGroup>

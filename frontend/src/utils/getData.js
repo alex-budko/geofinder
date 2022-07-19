@@ -1,19 +1,56 @@
-export const getData = async (setCoordinates, setReady, type) => {
+export const getData = async (setCoordinates, setPaths, setReady, type) => {
   setCoordinates([]);
-  await fetch("https://eonet.gsfc.nasa.gov/api/v3/events")
-    .then((response) => response.json())
-    .then((data) => {
-      for (let i = 0; i < data.events.length; i++) {
-        if (data.events[i].categories[0].id === `${type}`) {
+  setPaths([[]]);
+  if (type === "earthquakes") {
+    await fetch(
+      "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        for (let i = 0; i < data.features.length; i++) {
           setCoordinates((coordinates) => [
             ...coordinates,
             {
-              lat: Math.floor(data.events[i].geometry[0].coordinates[1]),
-              lng: Math.floor(data.events[i].geometry[0].coordinates[0]),
+              lat: data.features[i].geometry.coordinates[1],
+              lng: data.features[i].geometry.coordinates[0],
             },
           ]);
         }
-      }
-    });
-  await setReady(true);
+      }).then(setReady(true));
+  } else if (type === "weatherAlerts") {
+    await fetch("https://api.weather.gov/alerts/active")
+      .then((response) => response.json())
+      .then((data) => {
+        for (let i = 0; i < data.features.length; i++) {
+          if (data.features[i].geometry) {
+            let x = [];
+            for (let j = 0; j < data.features[i].geometry.coordinates[0].length;j++) {
+              x.push({
+                lat: data.features[i].geometry.coordinates[0][j][1],
+                lng: data.features[i].geometry.coordinates[0][j][0],
+              })
+            }
+            setPaths((paths) => [
+              ...paths, x
+            ]);
+          }
+        }
+      }).then(setReady(true));
+  } else {
+    await fetch("https://eonet.gsfc.nasa.gov/api/v3/events")
+      .then((response) => response.json())
+      .then((data) => {
+        for (let i = 0; i < data.events.length; i++) {
+          if (data.events[i].categories[0].id === `${type}`) {
+            setCoordinates((coordinates) => [
+              ...coordinates,
+              {
+                lat: data.events[i].geometry[0].coordinates[1],
+                lng: data.events[i].geometry[0].coordinates[0],
+              },
+            ]);
+          }
+        }
+      }).then(setReady(true));
+  }
 };
