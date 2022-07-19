@@ -10,17 +10,23 @@ import {
     Flex,
   } from '@chakra-ui/react';
   
-  import { BsThreeDotsVertical, BsChatSquareQuote } from 'react-icons/bs';
-  import { RiShutDownLine, RiRestartLine, RiFileShredLine } from 'react-icons/ri';
+  import { BsThreeDotsVertical, BsThreeDots } from 'react-icons/bs';
+  import { useState } from 'react';
+  import { BiHelpCircle } from 'react-icons/bi'
+  import { FaExchangeAlt } from 'react-icons/fa'
+  import { AiOutlineInfoCircle } from 'react-icons/ai'
+  
   
   export default function ServerSecondaryOptions() {
+    const [active, setActive] = useState(false)
     return (
-      <Flex justifyContent="center" mt={4}>
+      <Flex ml={5} mt={5}>
         <Popover placement="bottom" isLazy>
           <PopoverTrigger>
             <IconButton
-              aria-label="More server options"
-              icon={<BsThreeDotsVertical />}
+            onClick={()=>setActive(!active)}
+              aria-label="Options"
+              icon={active ? <BsThreeDots /> : <BsThreeDotsVertical />}
               variant="solid"
               w="fit-content"
             />
@@ -28,45 +34,33 @@ import {
           <PopoverContent w="fit-content" _focus={{ boxShadow: 'none' }}>
             <PopoverArrow />
             <PopoverBody>
-              <Stack>
+              <Stack >
                 <Button
                   w="194px"
                   variant="ghost"
-                  rightIcon={<BsChatSquareQuote />}
-                  justifyContent="space-between"
+                  rightIcon={<FaExchangeAlt />}
+                  justifyContent="center"
                   fontWeight="normal"
                   fontSize="sm">
-                  Request Access
+                  Change Topic
                 </Button>
                 <Button
                   w="194px"
                   variant="ghost"
-                  rightIcon={<RiFileShredLine />}
-                  justifyContent="space-between"
+                  rightIcon={<BiHelpCircle />}
+                  justifyContent="center"
                   fontWeight="normal"
-                  colorScheme="red"
                   fontSize="sm">
-                  Purge Redis Cache
+                  Tutorial
                 </Button>
                 <Button
                   w="194px"
                   variant="ghost"
-                  rightIcon={<RiRestartLine />}
-                  justifyContent="space-between"
+                  rightIcon={<AiOutlineInfoCircle />}
+                  justifyContent="center"
                   fontWeight="normal"
-                  colorScheme="red"
                   fontSize="sm">
-                  Restart Server
-                </Button>
-                <Button
-                  w="194px"
-                  variant="ghost"
-                  rightIcon={<RiShutDownLine />}
-                  justifyContent="space-between"
-                  fontWeight="normal"
-                  colorScheme="red"
-                  fontSize="sm">
-                  Disable Server
+                  About
                 </Button>
               </Stack>
             </PopoverBody>

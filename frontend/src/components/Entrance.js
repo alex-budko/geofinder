@@ -7,25 +7,26 @@ import {
   Radio,
   Button,
   useColorModeValue,
+  HStack,
 } from "@chakra-ui/react";
 import SecondaryOptions from "./SecondaryOptions";
 
 export default function Entrance({ setPassedParameters, setType }) {
-
-  const onChange = e => {
-    setType(e)
-  }
+  const onChange = (e) => {
+    setType(e);
+  };
 
   return (
     <Center py={6}>
       <Box
-        maxW={"400px"}
+        maxW={"350px"}
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
         rounded={"md"}
         overflow={"hidden"}
       >
+        <SecondaryOptions />
         <Stack
           textAlign={"center"}
           p={6}
@@ -53,16 +54,22 @@ export default function Entrance({ setPassedParameters, setType }) {
         <Box bg={useColorModeValue("gray.50", "gray.900")} px={6} py={10}>
           <RadioGroup onChange={(e) => onChange(e)} defaultValue="1">
             <Center>
-              <Stack mr='10' spacing="3">
-              <SecondaryOptions />
-              <Radio value="weatherAlerts">Weather Alert Zones (U.S.)</Radio>
-                <Radio value="wildfires">Wildfires</Radio>
+              <Stack mt='-5' mb="4" spacing="5">
+                <Radio value="weatherAlerts">Alert Zones (U.S.)</Radio>
               </Stack>
-              <Stack spacing="3">
-                <Radio value="earthquakes">Earthquakes</Radio>
-                <Radio value="severeStorms">Severe Storms</Radio>
-                <Radio value="volcanoes">Volcanoes</Radio>
-              </Stack>
+            </Center>
+            <Center>
+              <HStack>
+                <Stack mr="7" spacing="5">
+                  <Radio value="wildfires">Wildfires</Radio>
+                  <Radio value="earthquakes">Earthquakes</Radio>
+                </Stack>
+
+                <Stack spacing="3">
+                  <Radio value="severeStorms">Severe Storms</Radio>
+                  <Radio value="volcanoes">Volcanoes</Radio>
+                </Stack>
+              </HStack>
             </Center>
           </RadioGroup>
 
