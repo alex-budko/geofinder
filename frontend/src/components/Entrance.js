@@ -19,7 +19,7 @@ export default function Entrance({ setPassedParameters, setType }) {
   return (
     <Center py={6}>
       <Box
-        maxW={"350px"}
+        maxW={"360px"}
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
