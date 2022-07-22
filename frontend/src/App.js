@@ -6,7 +6,7 @@ import { useState } from "react";
 import "./styles/styles.css";
 
 function App() {
-  const [type, setType] = useState('') 
+  const [type, setType] = useState('weatherAlerts') 
   const [passedParameters, setPassedParameters] = useState(false);
   return (
     <>

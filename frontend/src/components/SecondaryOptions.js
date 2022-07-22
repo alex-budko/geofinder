@@ -17,7 +17,7 @@ import {
   import { AiOutlineInfoCircle } from 'react-icons/ai'
   
   
-  export default function ServerSecondaryOptions() {
+  export default function ServerSecondaryOptions({setStepsEnabled}) {
     const [active, setActive] = useState(false)
     return (
       <Flex ml={5} mt={5}>
@@ -45,6 +45,7 @@ import {
                   Change Topic
                 </Button>
                 <Button
+                  onClick={()=>setStepsEnabled(true)}
                   w="194px"
                   variant="ghost"
                   rightIcon={<BiHelpCircle />}

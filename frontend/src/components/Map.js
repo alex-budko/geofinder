@@ -18,16 +18,15 @@ function Map({ type }) {
 
   const options = {
     fillOpacity: 0.1,
-    strokeColor: "red",
-    strokeOpacity: 1,
-    strokeWeight: 1,
+    strokeColor: "#00ACC1",
+    strokeOpacity: 0.4,
+    strokeWeight: 2,
     clickable: true,
     draggable: false,
     editable: false,
     geodesic: false,
     zIndex: 1,
   };
-
 
   useEffect(() => {
     getData(setCoordinates, setPaths, setReady, setPolyDesc, type);
@@ -39,7 +38,6 @@ function Map({ type }) {
     } else if (paths) {
       setBoxes(Array(paths.length).fill(false));
     }
-    
   }, [coordinates, paths]);
 
   const { isLoaded } = useLoadScript({
@@ -113,7 +111,7 @@ function Map({ type }) {
                     {boxes[i] && (
                       <InfoWindow
                         position={{
-                          lat: paths[i][1].lat + 1,
+                          lat: paths[i][1].lat + 0.3,
                           lng: paths[i][1].lng,
                         }}
                         key={600 + i * 3}
@@ -124,7 +122,9 @@ function Map({ type }) {
                         }}
                       >
                         <div>
-                          <h1 key={1} style={{ color: "black" }}>{polyDesc[i]}</h1>
+                          <h1 key={1} style={{ color: "black" }}>
+                            {polyDesc[i]}
+                          </h1>
                         </div>
                       </InfoWindow>
                     )}
