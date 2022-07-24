@@ -29,7 +29,7 @@ function Map({ type }) {
   };
 
   useEffect(() => {
-    getData(setCoordinates, setPaths, setReady, setPolyDesc, type);
+    getData(setCoordinates, setPaths, setPolyDesc, type).finally(setReady(true))
   }, [type]);
 
   useEffect(() => {
@@ -123,7 +123,7 @@ function Map({ type }) {
                       >
                         <div>
                           <h1 key={1} style={{ color: "black" }}>
-                            {polyDesc[i]}
+                            {polyDesc[i - 1]}
                           </h1>
                         </div>
                       </InfoWindow>

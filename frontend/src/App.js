@@ -4,14 +4,28 @@ import Map from "./components/Map";
 import { useState } from "react";
 
 import "./styles/styles.css";
+import WeatherEntrance from "./components/WeatherEntrance";
 
 function App() {
-  const [type, setType] = useState('weatherAlerts') 
+  const [type, setType] = useState("weatherAlerts");
+  const [viewingWeather, setViewingWeather] = useState(true);
   const [passedParameters, setPassedParameters] = useState(false);
   return (
     <>
       {!passedParameters ? (
-        <Entrance setPassedParameters={setPassedParameters} setType={setType} />
+        !viewingWeather ? (
+          <Entrance
+            setViewingWeather={setViewingWeather}
+            setPassedParameters={setPassedParameters}
+            setType={setType}
+          />
+        ) : (
+          <WeatherEntrance
+            setViewingWeather={setViewingWeather}
+            setPassedParameters={setPassedParameters}
+            setType={setType}
+          />
+        )
       ) : (
         <Map type={type} />
       )}

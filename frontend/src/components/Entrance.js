@@ -22,9 +22,7 @@ import { RiEarthquakeFill } from "react-icons/ri";
 import { AiOutlineFire } from "react-icons/ai";
 import { useState } from "react";
 
-import ColorModeToggler from "./ColorModeToggler";
-
-export default function Entrance({ setPassedParameters, setType }) {
+export default function Entrance({  setViewingWeather, setPassedParameters, setType }) {
   const [stepsEnabled, setStepsEnabled] = useState(false);
 
   const onChange = (e) => {
@@ -49,27 +47,27 @@ export default function Entrance({ setPassedParameters, setType }) {
           {
             element: ".wildfires",
             tooltipClass: 'tutorial-tooltip',
-            intro: "Or current active wildfires around the world!",
+            intro: "Or, current active wildfires around the world!",
           },
           {
             element: ".earthquakes",
             tooltipClass: 'tutorial-tooltip',
-            intro: "Or scary earthquakes happening around the glove",
+            intro: "Or, scary earthquakes happening around the glove",
           },
           {
             element: ".severeStorms",
             tooltipClass: 'tutorial-tooltip',
-            intro: "Or dangerous oceanic storms!",
+            intro: "Or, dangerous oceanic storms!",
           },
           {
             element: ".volcanoes",
             tooltipClass: 'tutorial-tooltip',
-            intro: "Or even active volcanoes!",
+            intro: "Or, even active volcanoes!",
           },
           {
             element: ".view-map",
             tooltipClass: 'tutorial-tooltip',
-            intro: "Select your option, click View Map, and enjoy!",
+            intro: "Select your option, click 'View Map,' and enjoy!",
           },
         ]}
         initialStep={0}
@@ -86,8 +84,7 @@ export default function Entrance({ setPassedParameters, setType }) {
           overflow={"hidden"}
         >
           <HStack>
-            <SecondaryOptions setStepsEnabled={setStepsEnabled} />
-            {/* <ColorModeToggler /> */}
+            <SecondaryOptions setViewingWeather={setViewingWeather} setStepsEnabled={setStepsEnabled} />
           </HStack>
           
           <Stack

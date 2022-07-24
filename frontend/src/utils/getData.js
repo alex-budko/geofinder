@@ -1,4 +1,4 @@
-export const getData = async (setCoordinates, setPaths, setReady, setPolyDesc, type) => {
+export const getData = async (setCoordinates, setPaths, setPolyDesc, type) => {
   setPolyDesc([])
   setCoordinates([])
   setPaths([[]])
@@ -19,11 +19,13 @@ export const getData = async (setCoordinates, setPaths, setReady, setPolyDesc, t
             },
           ]);
         }
-      }).then(setReady(true));
+      });
   } else if (type === "weatherAlerts") {
     await fetch("https://api.weather.gov/alerts/active")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
+
         for (let i = 0; i < data.features.length; i++) {
           if (data.features[i].geometry) {
             let x = [];
@@ -39,12 +41,11 @@ export const getData = async (setCoordinates, setPaths, setReady, setPolyDesc, t
             ]);
           }
         }
-      }).then(setReady(true));
+      });
   } else {
     await fetch("https://eonet.gsfc.nasa.gov/api/v3/events")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
         for (let i = 0; i < data.events.length; i++) {
           if (data.events[i].categories[0].id === `${type}`) {
             setCoordinates((coordinates) => [
@@ -57,6 +58,6 @@ export const getData = async (setCoordinates, setPaths, setReady, setPolyDesc, t
             ]);
           }
         }
-      }).then(setReady(true));
+      });
   }
 };
