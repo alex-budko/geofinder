@@ -23,11 +23,10 @@ function App() {
           <WeatherEntrance
             setViewingWeather={setViewingWeather}
             setPassedParameters={setPassedParameters}
-            setType={setType}
           />
         )
       ) : (
-        <Map type={type} />
+        <Map type={type} viewingWeather={viewingWeather} />
       )}
     </>
   );

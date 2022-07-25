@@ -3,8 +3,6 @@ import {
   Center,
   Text,
   Stack,
-  RadioGroup,
-  Radio,
   Button,
   useColorModeValue,
   HStack,
@@ -18,13 +16,8 @@ import "intro.js/introjs.css";
 import { Steps } from "intro.js-react";
 import { useState } from "react";
 
-export default function WeatherEntrance({ setViewingWeather, setPassedParameters, setType }) {
-  const [stepsEnabled, setStepsEnabled] = useState(false);
-
-  const onChange = (e) => {
-    setType(e);
-  };
-
+export default function WeatherEntrance({ setViewingWeather, setPassedParameters }) {
+  const [stepsEnabled, setStepsEnabled] = useState(false)
   return (
     <>
       <Steps

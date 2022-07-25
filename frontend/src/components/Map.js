@@ -8,13 +8,15 @@ import {
 import { useEffect, useState, Fragment } from "react";
 import Loading from "./Loading";
 import { getData } from "../utils/getData";
+import { getWeatherData } from "../utils/getWeatherData";
 
-function Map({ type }) {
+function Map({ type, viewingWeather }) {
   const [coordinates, setCoordinates] = useState([]);
   const [paths, setPaths] = useState([[]]);
   const [ready, setReady] = useState(false);
   const [boxes, setBoxes] = useState([]);
   const [polyDesc, setPolyDesc] = useState([]);
+  const [seekingWeatherData, setSeekingWeatherData] = useState(false)
 
   const options = {
     fillOpacity: 0.1,
@@ -28,8 +30,17 @@ function Map({ type }) {
     zIndex: 1,
   };
 
+  const seekingWeather = (lat, lng) => {
+    setSeekingWeatherData(true)
+    getWeatherData(lat, lng)
+  }
+
   useEffect(() => {
-    getData(setCoordinates, setPaths, setPolyDesc, type).finally(setReady(true))
+    if (viewingWeather) {
+      getData(setCoordinates, setPaths, setPolyDesc, type).finally(setReady(true))
+    } else {
+      setReady(true)
+    }
   }, [type]);
 
   useEffect(() => {
@@ -48,6 +59,7 @@ function Map({ type }) {
     <>
       {ready && isLoaded ? (
         <GoogleMap
+          onClick={(e)=>seekingWeather(e.latLng.lat(), e.latLng.lng())}
           zoom={6}
           center={{ lat: 40, lng: -101 }}
           mapContainerClassName="map-container"
