@@ -21,7 +21,7 @@ export default function AboutMe() {
         w={"full"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"2xl"}
-        rounded={"md"}
+        rounded={"lg"}
         overflow={"hidden"}
       >
 
