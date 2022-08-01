@@ -9,7 +9,9 @@ import { useEffect, useState, Fragment } from "react";
 import Loading from "./Loading";
 import { getData } from "../utils/getData";
 import { getWeatherData } from "../utils/getWeatherData";
-import { Center, Text, VStack } from "@chakra-ui/react";
+import { Center, Icon, Text, VStack } from "@chakra-ui/react";
+
+import { IoIosPartlySunny, IoIosSunny, IoIosRainy } from "react-icons/io";
 
 function Map({ type, viewingWeather }) {
   const [coordinates, setCoordinates] = useState([]);
@@ -22,7 +24,6 @@ function Map({ type, viewingWeather }) {
   const [conditions, setCondition] = useState(null);
   const [weatherCoords, setWeatherCoords] = useState([]);
   const [temp, setTemp] = useState([]);
-
 
   const options = {
     fillOpacity: 0.1,
@@ -38,12 +39,12 @@ function Map({ type, viewingWeather }) {
 
   const seekingWeather = (lat, lng) => {
     setSeekingWeatherData(true);
-    setWeatherCoords([lat, lng])
+    setWeatherCoords([lat, lng]);
     getWeatherData(lat, lng, setCondition, setTemp);
   };
 
   useEffect(() => {
-    if (viewingWeather) {
+    if (!viewingWeather) {
       getData(setCoordinates, setPaths, setPolyDesc, type).finally(
         setReady(true)
       );
@@ -114,25 +115,36 @@ function Map({ type, viewingWeather }) {
                 </>
               );
             })}
-          {(seekingWeatherData && weatherCoords !== []) && (
+          {viewingWeather && seekingWeatherData && weatherCoords !== [] && (
             <>
-            <InfoWindow
-              position={{
-                lat: parseFloat(weatherCoords[0]),
-                lng: parseFloat(weatherCoords[1]),
-              }}
-              onCloseClick={() => {
-                setWeatherCoords([])
-              }}
-            >
-              <VStack justify={'center'} align='center'>
-                <Text style={{ color: "black" }}>{conditions}</Text>
-                <Text style={{ color: "black" }}>C°: {temp[0]}</Text>
-                <Text style={{ color: "black" }}>F°: {temp[1]}</Text>
-              </VStack>
-            </InfoWindow>
+              <InfoWindow
+                position={{
+                  lat: parseFloat(weatherCoords[0]),
+                  lng: parseFloat(weatherCoords[1]),
+                }}
+                onCloseClick={() => {
+                  setWeatherCoords([]);
+                }}
+              >
+                <VStack justify={"center"} align="center">
+                  <Text  color= "black" >{conditions}</Text>
+                  <Center>
+                    <Text color={'gray.800'}>
+                      {conditions !== null &&
+                        (conditions.toLowerCase().includes("sun") || conditions.toLowerCase().includes("clear") ? (
+                          <IoIosSunny />
+                        ) : conditions.toLowerCase().includes("rain") ? (
+                          <IoIosRainy />
+                        ) : (
+                          <IoIosPartlySunny />
+                        ))}
+                    </Text>
+                  </Center>
+                  <Text style={{ color: "black" }}>C°: {temp[0]}</Text>
+                  <Text style={{ color: "black" }}>F°: {temp[1]}</Text>
+                </VStack>
+              </InfoWindow>
             </>
-
           )}
           {paths !== [[]] &&
             paths.map((path, i) => {

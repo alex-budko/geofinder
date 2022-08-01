@@ -7,9 +7,11 @@ import "./styles/styles.css";
 import WeatherEntrance from "./components/WeatherEntrance";
 
 function App() {
-  const [type, setType] = useState("weatherAlerts");
-  const [viewingWeather, setViewingWeather] = useState(true);
+  const [viewingWeather, setViewingWeather] = useState(false);
   const [passedParameters, setPassedParameters] = useState(false);
+
+  const [type, setType] = useState(!viewingWeather ? "weatherAlerts" : null);
+
   return (
     <>
       {!passedParameters ? (

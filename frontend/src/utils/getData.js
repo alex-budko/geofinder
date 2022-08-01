@@ -24,8 +24,6 @@ export const getData = async (setCoordinates, setPaths, setPolyDesc, type) => {
     await fetch("https://api.weather.gov/alerts/active")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data)
-
         for (let i = 0; i < data.features.length; i++) {
           if (data.features[i].geometry) {
             let x = [];
