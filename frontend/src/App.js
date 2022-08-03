@@ -5,6 +5,7 @@ import { useState } from "react";
 
 import "./styles/styles.css";
 import WeatherEntrance from "./components/WeatherEntrance";
+import EmailSub from "./components/EmailSub";
 
 function App() {
   const [viewingWeather, setViewingWeather] = useState(false);
@@ -16,16 +17,23 @@ function App() {
     <>
       {!passedParameters ? (
         !viewingWeather ? (
-          <Entrance
-            setViewingWeather={setViewingWeather}
-            setPassedParameters={setPassedParameters}
-            setType={setType}
-          />
+          <>
+            <Entrance
+              setViewingWeather={setViewingWeather}
+              setPassedParameters={setPassedParameters}
+              setType={setType}
+            />
+            <EmailSub />
+          </>
         ) : (
-          <WeatherEntrance
-            setViewingWeather={setViewingWeather}
-            setPassedParameters={setPassedParameters}
-          />
+          <>
+            {" "}
+            <WeatherEntrance
+              setViewingWeather={setViewingWeather}
+              setPassedParameters={setPassedParameters}
+            />{" "}
+            <EmailSub />
+          </>
         )
       ) : (
         <Map type={type} viewingWeather={viewingWeather} />
