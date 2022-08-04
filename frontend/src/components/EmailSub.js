@@ -15,6 +15,7 @@ import { entrance_email } from "../utils/entranceEmail";
 
 export default function EmailSub() {
   const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
   const [state, setState] = useState("initial" | "submitting" | "success");
   const [error, setError] = useState(false);
 
@@ -26,7 +27,7 @@ export default function EmailSub() {
         maxW={"lg"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"xl"}
-        shadow='dark-lg'
+        shadow="dark-lg"
         rounded={"3xl"}
         p={6}
         direction={"column"}
@@ -48,7 +49,7 @@ export default function EmailSub() {
             setError(false);
             setState("submitting");
 
-            entrance_email(e.target[0].value)
+            entrance_email(email, location);
 
             setTimeout(() => {
               setState("success");
@@ -59,7 +60,26 @@ export default function EmailSub() {
             <Input
               variant={"solid"}
               borderWidth={1}
-              color={"gray.800"}
+              color={"gray.50"}
+              _placeholder={{
+                color: "gray.400",
+              }}
+              borderColor={useColorModeValue("gray.300", "gray.700")}
+              id={"location"}
+              type={"text"}
+              required
+              placeholder={"Your City Name"}
+              aria-label={"Your Location"}
+              value={location}
+              disabled={state === "success" || state === "submitting"}
+              onChange={(e) => setLocation(e.target.value)}
+            />
+          </FormControl>
+          <FormControl>
+            <Input
+              variant={"solid"}
+              borderWidth={1}
+              color={"gray.50"}
               _placeholder={{
                 color: "gray.400",
               }}
@@ -74,6 +94,7 @@ export default function EmailSub() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </FormControl>
+
           <FormControl w={{ base: "100%", md: "40%" }}>
             <Button
               bgColor={state === "success" ? "green.500" : "blue.500"}
