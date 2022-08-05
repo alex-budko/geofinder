@@ -46,6 +46,7 @@ export const getData = async (setCoordinates, setPaths, setPolyDesc, type) => {
     await fetch("https://eonet.gsfc.nasa.gov/api/v3/events")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         for (let i = 0; i < data.events.length; i++) {
           if (data.events[i].categories[0].id === `${type}`) {
             setCoordinates((coordinates) => [

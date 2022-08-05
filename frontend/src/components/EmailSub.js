@@ -9,6 +9,7 @@ import {
   Text,
   Box,
   Center,
+  VStack,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { entrance_email } from "../utils/entranceEmail";
@@ -24,7 +25,7 @@ export default function EmailSub() {
       <Box
         mb={"5"}
         bgColor={"blue.800"}
-        maxW={"lg"}
+        maxW={"360px"}
         bg={useColorModeValue("white", "gray.800")}
         boxShadow={"xl"}
         shadow="dark-lg"
@@ -40,8 +41,7 @@ export default function EmailSub() {
         >
           Subscribe to Warning Emails
         </Heading>
-        <Stack
-          direction={{ base: "column", md: "row" }}
+        <VStack
           as={"form"}
           spacing={"12px"}
           onSubmit={(e) => {
@@ -105,7 +105,7 @@ export default function EmailSub() {
               {state === "success" ? <CheckIcon /> : "Submit"}
             </Button>
           </FormControl>
-        </Stack>
+        </VStack>
         <Text
           mt={2}
           textAlign={"center"}

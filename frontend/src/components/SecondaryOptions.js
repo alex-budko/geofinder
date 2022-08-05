@@ -31,7 +31,6 @@ export default function ServerSecondaryOptions({ setViewingWeather, setStepsEnab
             w="fit-content"
           />
         </PopoverTrigger>
-        {/* https://openweathermap.org/current */}
         <PopoverContent w="fit-content" _focus={{ boxShadow: "none" }}>
           <PopoverArrow />
           <PopoverBody>
