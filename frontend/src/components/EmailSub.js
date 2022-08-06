@@ -10,6 +10,7 @@ import {
   Box,
   Center,
   VStack,
+  FormLabel,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { entrance_email } from "../utils/entranceEmail";
@@ -57,6 +58,7 @@ export default function EmailSub() {
           }}
         >
           <FormControl>
+            <FormLabel>Location</FormLabel>
             <Input
               variant={"solid"}
               borderWidth={1}
@@ -68,7 +70,7 @@ export default function EmailSub() {
               id={"location"}
               type={"text"}
               required
-              placeholder={"Your City Name"}
+              placeholder={"Format: City, State/Country"}
               aria-label={"Your Location"}
               value={location}
               disabled={state === "success" || state === "submitting"}
@@ -76,6 +78,7 @@ export default function EmailSub() {
             />
           </FormControl>
           <FormControl>
+            <FormLabel>Email Address</FormLabel>
             <Input
               variant={"solid"}
               borderWidth={1}
@@ -87,7 +90,7 @@ export default function EmailSub() {
               id={"email"}
               type={"email"}
               required
-              placeholder={"Your Email"}
+              placeholder={"Email Address"}
               aria-label={"Your Email"}
               value={email}
               disabled={state === "success" || state === "submitting"}
