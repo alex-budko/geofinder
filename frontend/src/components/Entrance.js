@@ -22,7 +22,11 @@ import { RiEarthquakeFill } from "react-icons/ri";
 import { AiOutlineFire } from "react-icons/ai";
 import { useState } from "react";
 
-export default function Entrance({  setViewingWeather, setPassedParameters, setType }) {
+export default function Entrance({
+  setViewingWeather,
+  setPassedParameters,
+  setType,
+}) {
   const [stepsEnabled, setStepsEnabled] = useState(false);
 
   const onChange = (e) => {
@@ -36,37 +40,45 @@ export default function Entrance({  setViewingWeather, setPassedParameters, setT
         steps={[
           {
             element: ".main-box",
-            tooltipClass: 'tutorial-tooltip',
-            intro: "Welcome to GeoFinder, an open-source app to visualize current weather alerts around the world!",
+            tooltipClass: "tutorial-tooltip",
+            intro:
+              "Welcome to GeoFinder, an open-source app to visualize current weather alerts around the world!",
           },
           {
             element: ".weatherAlerts",
-            tooltipClass: 'tutorial-tooltip',
-            intro: "You can view current alert zones within the U.S. territories!",
+            tooltipClass: "tutorial-tooltip",
+            intro:
+              "You can view current alert zones within the U.S. territories!",
           },
           {
             element: ".wildfires",
-            tooltipClass: 'tutorial-tooltip',
+            tooltipClass: "tutorial-tooltip",
             intro: "Or, current active wildfires around the world!",
           },
           {
             element: ".earthquakes",
-            tooltipClass: 'tutorial-tooltip',
+            tooltipClass: "tutorial-tooltip",
             intro: "Or, scary earthquakes happening around the glove",
           },
           {
             element: ".severeStorms",
-            tooltipClass: 'tutorial-tooltip',
+            tooltipClass: "tutorial-tooltip",
             intro: "Or, dangerous oceanic storms!",
           },
           {
             element: ".volcanoes",
-            tooltipClass: 'tutorial-tooltip',
+            tooltipClass: "tutorial-tooltip",
             intro: "Or, even active volcanoes!",
           },
           {
+            element: ".weather",
+            tooltipClass: "tutorial-tooltip",
+            intro:
+              "Or, you can even check out the current weather conditons at any location throughout the globe!",
+          },
+          {
             element: ".view-map",
-            tooltipClass: 'tutorial-tooltip',
+            tooltipClass: "tutorial-tooltip",
             intro: "Select your option, click 'View Map,' and enjoy!",
           },
         ]}
@@ -83,10 +95,13 @@ export default function Entrance({  setViewingWeather, setPassedParameters, setT
           rounded={"md"}
           overflow={"hidden"}
         >
-          <HStack>
-            <SecondaryOptions setViewingWeather={setViewingWeather} setStepsEnabled={setStepsEnabled} />
+          <HStack className="weather">
+            <SecondaryOptions
+              setViewingWeather={setViewingWeather}
+              setStepsEnabled={setStepsEnabled}
+            />
           </HStack>
-          
+
           <Stack
             textAlign={"center"}
             p={6}
@@ -101,19 +116,22 @@ export default function Entrance({  setViewingWeather, setPassedParameters, setT
               px={3}
               color={"green.500"}
               rounded={"full"}
-              className={'main-box'}
+              className={"main-box"}
             >
               GeoFinder
             </Text>
             <Stack direction={"row"} align={"center"} justify={"center"}>
               <Text fontSize={"5xl"} fontWeight={800}>
-                 Select
+                Select
               </Text>
             </Stack>
           </Stack>
 
           <Box bg={useColorModeValue("gray.50", "gray.800")} px={6} py={10}>
-            <RadioGroup onChange={(e) => onChange(e)} defaultValue="weatherAlerts">
+            <RadioGroup
+              onChange={(e) => onChange(e)}
+              defaultValue="weatherAlerts"
+            >
               <Center>
                 <Stack mt="-5" mb="4" spacing="5">
                   <Radio className={"weatherAlerts"} value="weatherAlerts">

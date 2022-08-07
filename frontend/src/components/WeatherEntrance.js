@@ -6,18 +6,19 @@ import {
   Button,
   useColorModeValue,
   HStack,
-  Switch,
 } from "@chakra-ui/react";
 import SecondaryOptions from "./SecondaryOptions";
 
-import {FaFlagUsa} from 'react-icons/fa'
 import "intro.js/introjs.css";
 
 import { Steps } from "intro.js-react";
 import { useState } from "react";
 
-export default function WeatherEntrance({ setViewingWeather, setPassedParameters }) {
-  const [stepsEnabled, setStepsEnabled] = useState(false)
+export default function WeatherEntrance({
+  setViewingWeather,
+  setPassedParameters,
+}) {
+  const [stepsEnabled, setStepsEnabled] = useState(false);
   return (
     <>
       <Steps
@@ -44,7 +45,10 @@ export default function WeatherEntrance({ setViewingWeather, setPassedParameters
           overflow={"hidden"}
         >
           <HStack>
-            <SecondaryOptions setViewingWeather={setViewingWeather} setStepsEnabled={setStepsEnabled} />
+            <SecondaryOptions
+              setViewingWeather={setViewingWeather}
+              setStepsEnabled={setStepsEnabled}
+            />
           </HStack>
 
           <Stack
@@ -74,11 +78,9 @@ export default function WeatherEntrance({ setViewingWeather, setPassedParameters
 
           <Box bg={useColorModeValue("gray.50", "gray.800")} px={6} py={10}>
             <Center>
-              <HStack spacing={2}>
-                <FaFlagUsa style={{ display: "inline-block"}} />
-                <Text fontSize="lg">Only Load U.S. Weather Data</Text>
-                <Switch colorScheme="teal" size="lg" />
-              </HStack>
+              <Text textAlign={"center"} fontSize="lg">
+                Click on any location to view its current weather conditions
+              </Text>
             </Center>
 
             <Button
