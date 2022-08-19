@@ -19,7 +19,8 @@ CELERY_BROKER_URL = 'redis://localhost:6379'
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-46i07fm0%o8v&d_pzvz$5+(2*@l6jjikm5-vuky%$0=th(hub('
+#  env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -34,8 +35,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD =  env('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'alex.budko2017@gmail.com'
+# env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = 'ppfgysayaampgqbg'
+env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 INSTALLED_APPS = [
@@ -88,9 +91,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASS'),
+        'NAME': 'geo',
+        # env('DATABASE_NAME'),
+        'USER': 'postgres',
+        # env('DATABASE_USER'),
+        'PASSWORD': 'Qwertyu7!',
+        #  env('DATABASE_PASS'),
         'HOST': 'localhost'
     }
 }
