@@ -80,7 +80,7 @@ function Map({ type, viewingWeather }) {
                 <>
                   <Marker
                     icon={{
-                      url: `icons/${type}.png`,
+                      url: require(`../icons/${type}.png`),
                       scale: 1,
                     }}
                     key={300 + i * 2}
