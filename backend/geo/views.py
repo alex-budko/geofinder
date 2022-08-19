@@ -36,13 +36,16 @@ def send_out_warnings():
 @api_view(['POST'])
 def send_warning(req):
     data = req.data
+    # data['location']
+    # data['email']
     send_mail(
         'Warning Message from GeoFinder',
-        "Weather Warning: %s!" % (data['location']),
+        "Weather Warning: %s!" % 'alex.budko2017@gmail.com',
         'alex.budko2017@gmail.com',
-        [data['email']],
+        ['alex.budko2017@gmail.com'],
         fail_silently=False,
     )
+
     return Response({'message': 'success'})  
 
 @api_view(['POST'])
