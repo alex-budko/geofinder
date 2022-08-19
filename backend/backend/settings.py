@@ -38,7 +38,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'alex.budko2017@gmail.com'
 # env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = 'ppfgysayaampgqbg'
-env('EMAIL_HOST_PASSWORD')
+# env('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 
 INSTALLED_APPS = [
