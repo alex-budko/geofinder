@@ -1,17 +1,26 @@
 import Entrance from "./components/Entrance";
 import Map from "./components/Map";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./styles/styles.css";
 import WeatherEntrance from "./components/WeatherEntrance";
 import EmailSub from "./components/EmailSub";
+import { useColorMode } from "@chakra-ui/react";
 
 function App() {
   const [viewingWeather, setViewingWeather] = useState(false);
   const [passedParameters, setPassedParameters] = useState(false);
 
   const [type, setType] = useState(!viewingWeather ? "weatherAlerts" : null);
+
+  const { colorMode, toggleColorMode } = useColorMode()
+
+  useEffect(()=> {
+    if (colorMode === 'light') {
+      toggleColorMode()
+    }
+  }, [colorMode])
 
   return (
     <>
