@@ -52,8 +52,7 @@ def entrance_email(req):
         'Message from GeoFinder',
         "Welcome to Our Warning Weather Email List!",
         'alex.budko2017@gmail.com',
-        # [data['email']],
-        ['alex.budko2017@gmail.com'],
+        [data['email']],
         fail_silently=False,
     )
     return Response({'message': 'success'})
