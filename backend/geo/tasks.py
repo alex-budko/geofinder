@@ -8,7 +8,7 @@ def setup_periodic_tasks(sender, **kwargs):
     # Executes every Monday morning at 7:30 a.m.
     sender.add_periodic_task(
         crontab(hour=7, minute=30, day_of_week=1),
-        send_out_warnings.s('Happy Mondays!'),
+        send_out_warnings.s('Weather Warning'),
     )
 
 
@@ -25,7 +25,7 @@ def send_out_warnings():
         loc = data['features'][w]['properties']['place']
         for user in users:
             if loc.__contains__(user.location):
-                requests.post('http://127.0.0.1:8000/api/e/warn/', {'email': user.email, 'location': loc})
+                requests.post('https://geofinders.herokuapp.com/api/e/warn/', {'email': user.email, 'location': loc})
 
     url = 'https://eonet.gsfc.nasa.gov/api/v3/events'
 
@@ -35,4 +35,4 @@ def send_out_warnings():
         loc = data['events'][w]['title']
         for user in users:
             if loc.__contains__(user.location):
-                requests.post('http://127.0.0.1:8000/api/e/warn/', {'email': user.email, 'location': loc})
+                requests.post('https://geofinders.herokuapp.com/api/e/warn/', {'email': user.email, 'location': loc})

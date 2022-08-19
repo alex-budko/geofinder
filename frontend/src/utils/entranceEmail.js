@@ -15,10 +15,10 @@ export const entrance_email = async (email, location) => {
   });
   try {
     await axios
-      .post(`http://127.0.0.1:8000/api/location-marker/`, locationBody, config)
+      .post(`https://geofinders.herokuapp.com/api/location-marker/`, locationBody, config)
 
     await axios
-      .post(`http://127.0.0.1:8000/api/e/entrance/`, body, config)
+      .post(`https://geofinders.herokuapp.com/api/e/entrance/`, body, config)
       .then((res) => {
         return res;
       });
