@@ -9,7 +9,7 @@ import { useEffect, useState, Fragment } from "react";
 import Loading from "./Loading";
 import { getData } from "../utils/getData";
 import { getWeatherData } from "../utils/getWeatherData";
-import { Center, Icon, Text, VStack } from "@chakra-ui/react";
+import { Center, Text, VStack } from "@chakra-ui/react";
 
 import { IoIosPartlySunny, IoIosSunny, IoIosRainy } from "react-icons/io";
 
@@ -27,7 +27,7 @@ function Map({ type, viewingWeather }) {
 
   const options = {
     fillOpacity: 0.1,
-    strokeColor: "#00ACC1",
+    strokeColor: "#f73100",
     strokeOpacity: 0.4,
     strokeWeight: 2,
     clickable: true,
